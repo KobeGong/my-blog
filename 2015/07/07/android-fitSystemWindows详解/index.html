@@ -1,0 +1,489 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>android:fitSystemWindows详解 | Gong Gaofeng&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Gong Gaofeng">
+    
+
+    
+    <meta name="description" content="从Android 4.4开始，Android系统加入了一个比较酷的功能，就是我们可以设置状态栏的的颜色了，有个这个功能，状态栏就不再是黑乎乎的了，我们就可以根据我们应用的主色去设置状态栏的颜色，使得应用体验变得好一些，所以我们通过如下方式设置状态栏透明。
+12window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, Wi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android:fitSystemWindows详解">
+<meta property="og:url" content="http://yoursite.com/2015/07/07/android-fitSystemWindows详解/index.html">
+<meta property="og:site_name" content="Gong Gaofeng's blog">
+<meta property="og:description" content="从Android 4.4开始，Android系统加入了一个比较酷的功能，就是我们可以设置状态栏的的颜色了，有个这个功能，状态栏就不再是黑乎乎的了，我们就可以根据我们应用的主色去设置状态栏的颜色，使得应用体验变得好一些，所以我们通过如下方式设置状态栏透明。
+12window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, Wi">
+<meta property="og:image" content="http://img.blog.csdn.net/20150522212938290?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvS29iZV9Hb25nXzU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150525005118469?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvS29iZV9Hb25nXzU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2015-07-11T05:11:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="android:fitSystemWindows详解">
+<meta name="twitter:description" content="从Android 4.4开始，Android系统加入了一个比较酷的功能，就是我们可以设置状态栏的的颜色了，有个这个功能，状态栏就不再是黑乎乎的了，我们就可以根据我们应用的主色去设置状态栏的颜色，使得应用体验变得好一些，所以我们通过如下方式设置状态栏透明。
+12window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, Wi">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Gong Gaofeng&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Gong Gaofeng&#39;s blog" title="Gong Gaofeng&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Gong Gaofeng&#39;s blog">Gong Gaofeng&#39;s blog</a></h1>
+				<h2 class="blog-motto">Never Give Up</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/07/07/android-fitSystemWindows详解/" title="android:fitSystemWindows详解" itemprop="url">android:fitSystemWindows详解</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Gong Gaofeng" target="_blank" itemprop="author">Gong Gaofeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-07T05:06:18.000Z" itemprop="datePublished"> 发表于 2015-07-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>从Android 4.4开始，Android系统加入了一个比较酷的功能，就是我们可以设置状态栏的的颜色了，有个这个功能，状态栏就不再是黑乎乎的了，我们就可以根据我们应用的主色去设置状态栏的颜色，使得应用体验变得好一些，所以我们通过如下方式设置状态栏透明。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">window</span><span class="class">.setFlags</span>(<span class="tag">WindowManager</span><span class="class">.LayoutParams</span><span class="class">.FLAG_TRANSLUCENT_STATUS</span>, <span class="tag">WindowManager</span><span class="class">.LayoutParams</span><span class="class">.FLAG_TRANSLUCENT_STATUS</span>); </span><br><span class="line"><span class="tag">window</span><span class="class">.setFlags</span>(<span class="tag">WindowManager</span><span class="class">.LayoutParams</span><span class="class">.FLAG_TRANSLUCENT_NAVIGATION</span>, <span class="tag">WindowManager</span><span class="class">.LayoutParams</span><span class="class">.FLAG_TRANSLUCENT_NAVIGATION</span>);</span><br></pre></td></tr></table></figure>
+<p>但是设置了状态栏和导航栏透明之后，发现Activity的contentView超出了ActionBar，那么我们就要使用fitSystemWindws来解决这个问题，关于具体如何解决这个问题，在<a href="http://blog.csdn.net/kobe_gong_5/article/details/41704719%20%E2%80%9CAndroid4.4%E6%96%B0%E7%9A%84%E7%89%B9%E6%80%A7%EF%BC%8C%E5%9C%A8%E5%BA%94%E7%94%A8%E5%86%85%E5%BC%80%E5%90%AF%E9%80%8F%E6%98%8E%E7%8A%B6%E6%80%81%E6%A0%8F%E5%92%8C%E9%80%8F%E6%98%8E%E8%99%9A%E6%8B%9F%E6%8C%89%E9%92%AE%E2%80%9D" target="_blank" rel="external">Android4.4新的特性，在应用内开启透明状态栏和透明虚拟按钮</a>这篇博客中有详细介绍。</p>
+<p><img src="http://img.blog.csdn.net/20150522212938290?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvS29iZV9Hb25nXzU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="这里写图片描述"><br>那么android:fitSystemWindows到底是什么东西啊，它是怎样计算的？<br>在Android Framework的源代码中查看View.java，有这几个重要方法，如下：</p>
+<ul>
+<li>dispatchApplyWindowInsets</li>
+<li>onApplyWindowInsets</li>
+<li>fitSystemWindows</li>
+</ul>
+<p>是一个自定义的View，并且覆盖View的这三个方法，打印出Log，可以发现这三个方法的调用顺序是</p>
+<ol>
+<li>dispatchApplyWindowInsets</li>
+<li>onApplyWindowInsets</li>
+<li>fitSystemWindows</li>
+</ol>
+<p>这里我们通过代码调试的方法来查看Android Framework的方法调用堆栈，如图：</p>
+<p><img src="http://img.blog.csdn.net/20150525005118469?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvS29iZV9Hb25nXzU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="这里写图片描述"><br>根据堆栈可以发现，dispatchApplyWindowInsets方法是在ViewRootImpl.performMeasure(int,int)方法中调用的。也就是说，dispatchApplyWindowInsets是在整个View Hierarchy的measure过程中调用的。</p>
+<p>在从layout文件中解释到fitSystemWindows为true设置标志位。那这个标志为在什么时候起的作用。<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> com.android.internal.R.styleable.View_fitsSystemWindows:</span><br><span class="line">                    <span class="keyword">if</span> (a.getBoolean(attr, <span class="keyword">false</span>)) &#123;</span><br><span class="line">                        viewFlagValues |= FITS_SYSTEM_WINDOWS;</span><br><span class="line">                        viewFlagMasks |= FITS_SYSTEM_WINDOWS;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure></p>
+<p>再看上面那幅堆栈图，在ActionBarOverlayLayout.measure()中开始调用fitSystemWindows的相关方法，进入ActionBarOverlayLayout的源码。</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">protected void onMeasure<span class="params">(int widthMeasureSpec, int heightMeasureSpec)</span> &#123;</span><br><span class="line">		<span class="comment">//通过findViewById方法，得到布局文件中的view</span></span><br><span class="line">        pullChildren<span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">        int maxHeight = <span class="number">0</span>;</span><br><span class="line">        int maxWidth = <span class="number">0</span>;</span><br><span class="line">        int childState = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        int topInset = <span class="number">0</span>;</span><br><span class="line">        int bottomInset = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">//测量ActionBar的高度和宽度</span></span><br><span class="line">        measureChildWithMargins<span class="params">(mActionBarTop, widthMeasureSpec, <span class="number">0</span>, heightMeasureSpec, <span class="number">0</span>)</span>;</span><br><span class="line">        LayoutParams lp = <span class="params">(LayoutParams)</span> mActionBarTop.getLayoutParams<span class="params">()</span>;</span><br><span class="line">        maxWidth = Math.<span class="built_in">max</span><span class="params">(maxWidth,</span><br><span class="line">                mActionBarTop.getMeasuredWidth<span class="params">()</span> + lp.leftMargin + lp.rightMargin)</span>;</span><br><span class="line">        maxHeight = Math.<span class="built_in">max</span><span class="params">(maxHeight,</span><br><span class="line">                mActionBarTop.getMeasuredHeight<span class="params">()</span> + lp.topMargin + lp.bottomMargin)</span>;</span><br><span class="line">        childState = ViewUtils.combineMeasuredStates<span class="params">(childState,</span><br><span class="line">                ViewCompat.getMeasuredState<span class="params">(mActionBarTop)</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// xlarge screen layout doesn't have bottom action bar.</span></span><br><span class="line">        <span class="comment">//测量ActionBar底部区域的高度和宽度</span></span><br><span class="line">        <span class="keyword">if</span> <span class="params">(mActionBarBottom != null)</span> &#123;</span><br><span class="line">            measureChildWithMargins<span class="params">(mActionBarBottom, widthMeasureSpec, <span class="number">0</span>, heightMeasureSpec, <span class="number">0</span>)</span>;</span><br><span class="line">            lp = <span class="params">(LayoutParams)</span> mActionBarBottom.getLayoutParams<span class="params">()</span>;</span><br><span class="line">            maxWidth = Math.<span class="built_in">max</span><span class="params">(maxWidth,</span><br><span class="line">                    mActionBarBottom.getMeasuredWidth<span class="params">()</span> + lp.leftMargin + lp.rightMargin)</span>;</span><br><span class="line">            maxHeight = Math.<span class="built_in">max</span><span class="params">(maxHeight,</span><br><span class="line">                    mActionBarBottom.getMeasuredHeight<span class="params">()</span> + lp.topMargin + lp.bottomMargin)</span>;</span><br><span class="line">            childState = ViewUtils.combineMeasuredStates<span class="params">(childState,</span><br><span class="line">                    ViewCompat.getMeasuredState<span class="params">(mActionBarBottom)</span>)</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        final int vis = ViewCompat.getWindowSystemUiVisibility<span class="params">(this)</span>;</span><br><span class="line">        final boolean stable = <span class="params">(vis &amp; SYSTEM_UI_FLAG_LAYOUT_STABLE)</span> <span class="built_in">!</span>= <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="params">(stable)</span> &#123;</span><br><span class="line">            <span class="comment">// This is the standard space needed for the action bar.  For stable measurement,</span></span><br><span class="line">            <span class="comment">// we can't depend on the size currently reported by it -- this must remain constant.</span></span><br><span class="line">            topInset = mActionBarHeight;</span><br><span class="line">            <span class="comment">//考虑到ActionbarTab的高度，计算topInset</span></span><br><span class="line">            <span class="keyword">if</span> <span class="params">(mHasNonEmbeddedTabs)</span> &#123;</span><br><span class="line">                final View tabs = mActionBarTop.getTabContainer<span class="params">()</span>;</span><br><span class="line">                <span class="keyword">if</span> <span class="params">(tabs != null)</span> &#123;</span><br><span class="line">                    <span class="comment">// If tabs are not embedded, increase space on top to account for them.</span></span><br><span class="line">                    topInset += mActionBarHeight;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> <span class="params">(mActionBarTop.getVisibility<span class="params">()</span> != GONE)</span> &#123;</span><br><span class="line">            <span class="comment">// This is the space needed on top of the window for all of the action bar</span></span><br><span class="line">            <span class="comment">// and tabs.</span></span><br><span class="line">            topInset = mActionBarTop.getMeasuredHeight<span class="params">()</span>;</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">//如果ActionBar是split模式，考虑底部的高度，计算insetBottom</span></span><br><span class="line">        <span class="keyword">if</span> <span class="params">(mDecorToolbar.isSplit<span class="params">()</span>)</span> &#123;</span><br><span class="line">            <span class="comment">// If action bar is split, adjust bottom insets for it.</span></span><br><span class="line">            <span class="keyword">if</span> <span class="params">(mActionBarBottom != null)</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> <span class="params">(stable)</span> &#123;</span><br><span class="line">                    bottomInset = mActionBarHeight;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    bottomInset = mActionBarBottom.getMeasuredHeight<span class="params">()</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If the window has not requested system UI layout flags, we need to</span></span><br><span class="line">        <span class="comment">// make sure its content is not being covered by system UI...  though it</span></span><br><span class="line">        <span class="comment">// will still be covered by the action bar if they have requested it to</span></span><br><span class="line">        <span class="comment">// overlay.</span></span><br><span class="line">        mContentInsets.set<span class="params">(mBaseContentInsets)</span>;</span><br><span class="line">        mInnerInsets.set<span class="params">(mBaseInnerInsets)</span>;</span><br><span class="line">        <span class="keyword">if</span> <span class="params">(!mOverlayMode &amp;&amp; !stable)</span> &#123;</span><br><span class="line">            mContentInsets.top += topInset;</span><br><span class="line">            mContentInsets.bottom += bottomInset;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            mInnerInsets.top += topInset;</span><br><span class="line">            mInnerInsets.bottom += bottomInset;</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">//在ActionBar为非Overlay模式下，应用计算好的ContentInsets</span></span><br><span class="line">        applyInsets<span class="params">(mContent, mContentInsets, <span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">true</span>)</span>;</span><br><span class="line">		<span class="comment">//</span></span><br><span class="line">        <span class="keyword">if</span> <span class="params">(!mLastInnerInsets.equals<span class="params">(mInnerInsets)</span>)</span> &#123;</span><br><span class="line">            <span class="comment">// If the inner insets have changed, we need to dispatch this down to</span></span><br><span class="line">            <span class="comment">// the app's fitSystemWindows().  We do this before measuring the content</span></span><br><span class="line">            <span class="comment">// view to keep the same semantics as the normal fitSystemWindows() call.</span></span><br><span class="line">            mLastInnerInsets.set<span class="params">(mInnerInsets)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Overlay模式下，将InnerInsets分发到子View中。            mContent.dispatchFitSystemWindows(mInnerInsets);</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        measureChildWithMargins<span class="params">(mContent, widthMeasureSpec, <span class="number">0</span>, heightMeasureSpec, <span class="number">0</span>)</span>;</span><br><span class="line">        lp = <span class="params">(LayoutParams)</span> mContent.getLayoutParams<span class="params">()</span>;</span><br><span class="line">        maxWidth = Math.<span class="built_in">max</span><span class="params">(maxWidth,</span><br><span class="line">                mContent.getMeasuredWidth<span class="params">()</span> + lp.leftMargin + lp.rightMargin)</span>;</span><br><span class="line">        maxHeight = Math.<span class="built_in">max</span><span class="params">(maxHeight,</span><br><span class="line">                mContent.getMeasuredHeight<span class="params">()</span> + lp.topMargin + lp.bottomMargin)</span>;</span><br><span class="line">        childState = ViewUtils.combineMeasuredStates<span class="params">(childState,</span><br><span class="line">                ViewCompat.getMeasuredState<span class="params">(mContent)</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Account for padding too</span></span><br><span class="line">        maxWidth += getPaddingLeft<span class="params">()</span> + getPaddingRight<span class="params">()</span>;</span><br><span class="line">        maxHeight += getPaddingTop<span class="params">()</span> + getPaddingBottom<span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Check against our minimum height and width</span></span><br><span class="line">        maxHeight = Math.<span class="built_in">max</span><span class="params">(maxHeight, getSuggestedMinimumHeight<span class="params">()</span>)</span>;</span><br><span class="line">        maxWidth = Math.<span class="built_in">max</span><span class="params">(maxWidth, getSuggestedMinimumWidth<span class="params">()</span>)</span>;</span><br><span class="line"></span><br><span class="line">        setMeasuredDimension<span class="params">(</span><br><span class="line">                ViewCompat.resolveSizeAndState<span class="params">(maxWidth, widthMeasureSpec, childState)</span>,</span><br><span class="line">                ViewCompat.resolveSizeAndState<span class="params">(maxHeight, heightMeasureSpec,</span><br><span class="line">                        childState &lt;&lt; MEASURED_HEIGHT_STATE_SHIFT)</span>)</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>根据上面的堆栈图知道mContent是NativeActionModeAwareLayout类型，而NativeActionModeAwareLayout，没有dispatchFitSystemWindows方法，那么查看其父类的dispatchFitSystemWindows方法。NativeActionModeAwareLayout的父类是ContentFrameLayout类型，看它的dispatchFitSystemWindows方法。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">dispatchFitSystemWindows</span><span class="params">(Rect insets)</span> </span>&#123;</span><br><span class="line">        fitSystemWindows(insets);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>它直接调用View的fitSystemWindows方法。看View的fitSystemWindows方法。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">boolean</span> <span class="title">fitSystemWindows</span><span class="params">(Rect insets)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((mPrivateFlags3 &amp; PFLAG3_APPLYING_INSETS) == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (insets == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// Null insets by definition have already been consumed.</span></span><br><span class="line">                <span class="comment">// This call cannot apply insets since there are none to apply,</span></span><br><span class="line">                <span class="comment">// so return false.</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">           </span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                mPrivateFlags3 |= PFLAG3_FITTING_SYSTEM_WINDOWS;</span><br><span class="line">                <span class="keyword">return</span> dispatchApplyWindowInsets(<span class="keyword">new</span> WindowInsets(insets)).isConsumed();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                mPrivateFlags3 &amp;= ~PFLAG3_FITTING_SYSTEM_WINDOWS;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="function"><span class="keyword">return</span> <span class="title">fitSystemWindowsInt</span><span class="params">(insets)</span></span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>由于第一次调用，这里的mPrivateFlags3 的PFLAG3_APPLYING_INSETS标志为不为1，所以进入if条件。进入dispatchApplyWindowInsets方法。并将mPrivateFlags3 的PFLAG3_APPLYING_INSETS标志为置为1。由于ContentFrameLayout继承了Framelayout ,所以进入了ViewGroup的dispatchApplyWindowInsets方法。<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    public WindowInsets dispatchApplyWindowInsets<span class="params">(WindowInsets insets)</span> &#123;</span><br><span class="line">        insets = super.dispatchApplyWindowInsets<span class="params">(insets)</span>;</span><br><span class="line">        <span class="keyword">if</span> <span class="params">(!insets.isConsumed<span class="params">()</span>)</span> &#123;</span><br><span class="line">            final int count = getChildCount<span class="params">()</span>;</span><br><span class="line">            <span class="keyword">for</span> <span class="params">(int i = <span class="number">0</span>; i &lt; count; i++)</span> &#123;</span><br><span class="line">                insets = getChildAt<span class="params">(i)</span>.dispatchApplyWindowInsets<span class="params">(insets)</span>;</span><br><span class="line">                <span class="keyword">if</span> <span class="params">(insets.isConsumed<span class="params">()</span>)</span> &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return insets;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>首先调用了 super.dispatchApplyWindowInsets方法，也就是View的 dispatchApplyWindowInsets，<br>然后如果insets没有被消费掉的话，分别调用每个view child的dispatchApplyWindowInsets方法，让子view去消费它，如果子view消费了，那么到此结束。先执行 super.dispatchApplyWindowInsets方法。<br>下面是View.dispatchApplyWindowInsets方法。<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function">WindowInsets <span class="title">dispatchApplyWindowInsets</span><span class="params">(WindowInsets insets)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           mPrivateFlags3 |= PFLAG3_APPLYING_INSETS;</span><br><span class="line">           <span class="keyword">if</span> (mListenerInfo != <span class="keyword">null</span> &amp;&amp; mListenerInfo.mOnApplyWindowInsetsListener != <span class="keyword">null</span>) &#123;</span><br><span class="line">               <span class="keyword">return</span> mListenerInfo.mOnApplyWindowInsetsListener.onApplyWindowInsets(<span class="keyword">this</span>, insets);</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="function"><span class="keyword">return</span> <span class="title">onApplyWindowInsets</span><span class="params">(insets)</span></span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">           mPrivateFlags3 &amp;= ~PFLAG3_APPLYING_INSETS;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>在此方法中首先将mPrivateFlags3 的PFLAG3_APPLYING_INSETS标志位置为1，然后如果开发者设置了listener的话就调用listener，否则调用onApplyWindowInsets方法。</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public WindowInsets onApplyWindowInsets<span class="params">(WindowInsets insets)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="params">(<span class="params">(mPrivateFlags3 &amp; PFLAG3_FITTING_SYSTEM_WINDOWS)</span> == <span class="number">0</span>)</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> <span class="params">(fitSystemWindows<span class="params">(insets.getSystemWindowInsets<span class="params">()</span>)</span>)</span> &#123;</span><br><span class="line">                return insets.consumeSystemWindowInsets<span class="params">()</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> <span class="params">(fitSystemWindowsInt<span class="params">(insets.getSystemWindowInsets<span class="params">()</span>)</span>)</span> &#123;</span><br><span class="line">                return insets.consumeSystemWindowInsets<span class="params">()</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return insets;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>在第一次调用fitSystemWindows方法后，mPrivateFlags3 得 PFLAG3_FITTING_SYSTEM_WINDOWS标志为被置位1了，所以进入fitSystemWindowsInt方法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">private boolean fitSystemWindowsInt(Rect insets) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((mViewFlags &amp; FITS_SYSTEM_WINDOWS) == FITS_SYSTEM_WINDOWS) &#123;</span><br><span class="line">            mUserPaddingStart = UNDEFINED_PADDING;</span><br><span class="line">            mUserPaddingEnd = UNDEFINED_PADDING;</span><br><span class="line">            Rect <span class="built_in">local</span>Insets = sThreadLocal.get();</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">local</span>Insets == null) &#123;</span><br><span class="line">                <span class="built_in">local</span>Insets = new Rect();</span><br><span class="line">                sThreadLocal.set(<span class="built_in">local</span>Insets);</span><br><span class="line">            &#125;</span><br><span class="line">            boolean res = computeFitSystemWindows(insets, <span class="built_in">local</span>Insets);</span><br><span class="line">            mUserPaddingLeftInitial = <span class="built_in">local</span>Insets.left;</span><br><span class="line">            mUserPaddingRightInitial = <span class="built_in">local</span>Insets.right;</span><br><span class="line">            internalSetPadding(<span class="built_in">local</span>Insets.left, <span class="built_in">local</span>Insets.top,</span><br><span class="line">                    <span class="built_in">local</span>Insets.right, <span class="built_in">local</span>Insets.bottom);</span><br><span class="line">            <span class="built_in">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>在这个方法中，两个关键函数</p>
+<ul>
+<li>computeFitSystemWindows</li>
+<li>internalSetPadding</li>
+</ul>
+<p>先看computeFitSystemWindows。官方解释是，计算insets应该被此view消费掉还是继续传递。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="built_in">boolean</span> computeFitSystemWindows(Rect inoutInsets, Rect outLocalInsets) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((mViewFlags &amp; OPTIONAL_FITS_SYSTEM_WINDOWS) == <span class="number">0</span></span><br><span class="line">                || mAttachInfo == <span class="keyword">null</span></span><br><span class="line">                || ((mAttachInfo.mSystemUiVisibility &amp; SYSTEM_UI_LAYOUT_FLAGS) == <span class="number">0</span></span><br><span class="line">                        &amp;&amp; !mAttachInfo.mOverscanRequested)) &#123;</span><br><span class="line">            outLocalInsets.<span class="built_in">set</span>(inoutInsets);</span><br><span class="line">            inoutInsets.<span class="built_in">set</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// The application wants to take care of fitting system window for</span></span><br><span class="line">            <span class="comment">// the content...  however we still need to take care of any overscan here.</span></span><br><span class="line">            <span class="keyword">final</span> Rect overscan = mAttachInfo.mOverscanInsets;</span><br><span class="line">            outLocalInsets.<span class="built_in">set</span>(overscan);</span><br><span class="line">            inoutInsets.left -= overscan.left;</span><br><span class="line">            inoutInsets.top -= overscan.top;</span><br><span class="line">            inoutInsets.right -= overscan.right;</span><br><span class="line">            inoutInsets.bottom -= overscan.bottom;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>再看internalSetPadding<br>此方法是设置view的padding。<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">protected void internalSetPadding<span class="params">(int left, int top, int right, int bottom)</span> &#123;</span><br><span class="line">       mUserPaddingLeft = left;</span><br><span class="line">       mUserPaddingRight = right;</span><br><span class="line">       mUserPaddingBottom = bottom;</span><br><span class="line"></span><br><span class="line">       final int viewFlags = mViewFlags;</span><br><span class="line">       boolean changed = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// Common case is there are no scroll bars.</span></span><br><span class="line">       <span class="keyword">if</span> <span class="params">(<span class="params">(viewFlags &amp; <span class="params">(SCROLLBARS_VERTICAL|SCROLLBARS_HORIZONTAL)</span>)</span> != <span class="number">0</span>)</span> &#123;</span><br><span class="line">           <span class="keyword">if</span> <span class="params">(<span class="params">(viewFlags &amp; SCROLLBARS_VERTICAL)</span> != <span class="number">0</span>)</span> &#123;</span><br><span class="line">               final int <span class="built_in">offset</span> = <span class="params">(viewFlags &amp; SCROLLBARS_INSET_MASK)</span> == <span class="number">0</span></span><br><span class="line">                       ? <span class="number">0</span> : getVerticalScrollbarWidth<span class="params">()</span>;</span><br><span class="line">               switch <span class="params">(mVerticalScrollbarPosition)</span> &#123;</span><br><span class="line">                   case SCROLLBAR_POSITION_DEFAULT:</span><br><span class="line">                       <span class="keyword">if</span> <span class="params">(isLayoutRtl<span class="params">()</span>)</span> &#123;</span><br><span class="line">                           left += <span class="built_in">offset</span>;</span><br><span class="line">                       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                           right += <span class="built_in">offset</span>;</span><br><span class="line">                       &#125;</span><br><span class="line">                       break;</span><br><span class="line">                   case SCROLLBAR_POSITION_RIGHT:</span><br><span class="line">                       right += <span class="built_in">offset</span>;</span><br><span class="line">                       break;</span><br><span class="line">                   case SCROLLBAR_POSITION_LEFT:</span><br><span class="line">                       left += <span class="built_in">offset</span>;</span><br><span class="line">                       break;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> <span class="params">(<span class="params">(viewFlags &amp; SCROLLBARS_HORIZONTAL)</span> != <span class="number">0</span>)</span> &#123;</span><br><span class="line">               bottom += <span class="params">(viewFlags &amp; SCROLLBARS_INSET_MASK)</span> == <span class="number">0</span></span><br><span class="line">                       ? <span class="number">0</span> : getHorizontalScrollbarHeight<span class="params">()</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> <span class="params">(mPaddingLeft != left)</span> &#123;</span><br><span class="line">           changed = <span class="literal">true</span>;</span><br><span class="line">           mPaddingLeft = left;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> <span class="params">(mPaddingTop != top)</span> &#123;</span><br><span class="line">           changed = <span class="literal">true</span>;</span><br><span class="line">           mPaddingTop = top;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> <span class="params">(mPaddingRight != right)</span> &#123;</span><br><span class="line">           changed = <span class="literal">true</span>;</span><br><span class="line">           mPaddingRight = right;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> <span class="params">(mPaddingBottom != bottom)</span> &#123;</span><br><span class="line">           changed = <span class="literal">true</span>;</span><br><span class="line">           mPaddingBottom = bottom;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> <span class="params">(changed)</span> &#123;</span><br><span class="line">           requestLayout<span class="params">()</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/07/07/android-fitSystemWindows详解/" data-title="android:fitSystemWindows详解 | Gong Gaofeng&#39;s blog" data-tsina="2288227603" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/07/07/Android中继承RadioButton后，点击不能选中/" title="Android中继承RadioButton后，点击不能选中">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Android中继承RadioButton后，点击不能选中</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/07/07/Android中的信使Messenger/"  title="Android中的信使Messenger">
+ <strong>下一篇：</strong><br/> 
+ <span>Android中的信使Messenger
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Gong Gaofeng in Baidu. <br/>
+			An Android Developer.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/kobegong5" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/kobegong" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		<a href="https://www.facebook.com/kobegong5" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/kobegong5" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:kobegong5@163.com## e.g. imjark@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Gong Gaofeng">Gong Gaofeng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"kobegong"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F038095525aac5e84d3b79c6205a99fff' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
