@@ -4,29 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Android中继承RadioButton后，点击不能选中 | Gong Gaofeng&#39;s blog</title>
+    <title>国内镜像快速下载Android源码 | Gong Gaofeng&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gong Gaofeng">
     
 
     
-    <meta name="description" content="在继承RadioButton的时候，覆改构造方法的时候要确保
-123public RadioButton(Context context, AttributeSet attrs) &amp;#123;        this(context, attrs, com.android.internal.R.attr.radioButtonStyle);&amp;#125;
-这个构造方法被调用。必须在子类中调用supe">
+    <meta name="description" content="由于google官方的下载源不能访问，原因大家都懂得，vpn小水管对于下载Android源代码只能呵呵了。幸好清华大学镜像为我们提供了Android源码的下载源，速度杠杠的，所以心动地立即搞起来。清华大学镜像源官方介绍—下载环境我使用的设备是Macbook Pro＋OS X10.10.5。1.首先创建区分大小写的磁盘映像，大小30G，因为源码的编译需要大小写敏感的文件系统，而mac默认的文件系统是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android中继承RadioButton后，点击不能选中">
-<meta property="og:url" content="http://yoursite.com/2015/07/07/Android中继承RadioButton后，点击不能选中/index.html">
+<meta property="og:title" content="国内镜像快速下载Android源码">
+<meta property="og:url" content="http://yoursite.com/2015/09/12/国内镜像快速下载Android源码/index.html">
 <meta property="og:site_name" content="Gong Gaofeng's blog">
-<meta property="og:description" content="在继承RadioButton的时候，覆改构造方法的时候要确保
-123public RadioButton(Context context, AttributeSet attrs) &amp;#123;        this(context, attrs, com.android.internal.R.attr.radioButtonStyle);&amp;#125;
-这个构造方法被调用。必须在子类中调用supe">
-<meta property="og:updated_time" content="2015-07-11T05:11:46.000Z">
+<meta property="og:description" content="由于google官方的下载源不能访问，原因大家都懂得，vpn小水管对于下载Android源代码只能呵呵了。幸好清华大学镜像为我们提供了Android源码的下载源，速度杠杠的，所以心动地立即搞起来。清华大学镜像源官方介绍—下载环境我使用的设备是Macbook Pro＋OS X10.10.5。1.首先创建区分大小写的磁盘映像，大小30G，因为源码的编译需要大小写敏感的文件系统，而mac默认的文件系统是">
+<meta property="og:image" content="http://7xk9c0.com1.z0.glb.clouddn.com/gaofeng-blog屏幕快照%202015-09-12%20下午11.41.05.png">
+<meta property="og:updated_time" content="2015-09-13T04:05:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android中继承RadioButton后，点击不能选中">
-<meta name="twitter:description" content="在继承RadioButton的时候，覆改构造方法的时候要确保
-123public RadioButton(Context context, AttributeSet attrs) &amp;#123;        this(context, attrs, com.android.internal.R.attr.radioButtonStyle);&amp;#125;
-这个构造方法被调用。必须在子类中调用supe">
+<meta name="twitter:title" content="国内镜像快速下载Android源码">
+<meta name="twitter:description" content="由于google官方的下载源不能访问，原因大家都懂得，vpn小水管对于下载Android源代码只能呵呵了。幸好清华大学镜像为我们提供了Android源码的下载源，速度杠杠的，所以心动地立即搞起来。清华大学镜像源官方介绍—下载环境我使用的设备是Macbook Pro＋OS X10.10.5。1.首先创建区分大小写的磁盘映像，大小30G，因为源码的编译需要大小写敏感的文件系统，而mac默认的文件系统是">
 
     
     <link rel="alternative" href="/atom.xml" title="Gong Gaofeng&#39;s blog" type="application/atom+xml">
@@ -86,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/07/07/Android中继承RadioButton后，点击不能选中/" title="Android中继承RadioButton后，点击不能选中" itemprop="url">Android中继承RadioButton后，点击不能选中</a>
+      <a href="/2015/09/12/国内镜像快速下载Android源码/" title="国内镜像快速下载Android源码" itemprop="url">国内镜像快速下载Android源码</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gong Gaofeng" target="_blank" itemprop="author">Gong Gaofeng</a>
 		
   <p class="article-time">
-    <time datetime="2015-07-07T08:21:24.000Z" itemprop="datePublished"> 发表于 2015-07-07</time>
+    <time datetime="2015-09-12T15:27:02.000Z" itemprop="datePublished"> 发表于 2015-09-12</time>
     
   </p>
 </header>
@@ -106,9 +101,7 @@
 		
 		</div>
 		
-		<p>在继承RadioButton的时候，覆改构造方法的时候要确保</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">RadioButton</span>(<span class="params">Context context, AttributeSet attrs</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(context, attrs, com.android.<span class="keyword">internal</span>.R.attr.radioButtonStyle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个构造方法被调用。必须在子类中调用super(Context context, AttributeSet attrs)方法。否则RadioButton子类不能选中。</p>
+		<p>由于google官方的下载源不能访问，原因大家都懂得，vpn小水管对于下载Android源代码只能呵呵了。幸好清华大学镜像为我们提供了Android源码的下载源，速度杠杠的，所以心动地立即搞起来。<br><a href="https://wiki.tuna.tsinghua.edu.cn/MirrorUsage/android" target="_blank" rel="external">清华大学镜像源官方介绍</a><br>—下载环境<br>我使用的设备是Macbook Pro＋OS X10.10.5。<br>1.首先创建区分大小写的磁盘映像，大小30G，因为源码的编译需要大小写敏感的文件系统，而mac默认的文件系统是大小写不敏感的。创建方法：<br>应用程序-&gt;实用工具－&gt;磁盘工具-&gt;文件－&gt;新建-&gt;空白磁盘映像<br><img src="http://7xk9c0.com1.z0.glb.clouddn.com/gaofeng-blog屏幕快照%202015-09-12%20下午11.41.05.png" alt=""><br>2.安装XCode。<br>3.安装MacPort<br>4.从MacPorts安装make, git, and GPG packages：<br>$ POSIXLY_CORRECT=1 sudo port install gmake libsdl git-core gnupg<br>5安装Git Repo：<br>$ mkdir ~/bin<br>$ PATH=~/bin:$PATH<br>6.curl <a href="https://storage.googleapis.com/git-repo-downloads/repo" target="_blank" rel="external">https://storage.googleapis.com/git-repo-downloads/repo</a> &gt; ~/bin/repo（需要科学上网），科学不了的可以尝试下面的命令：<br>curl “<a href="http://php.webtutor.pl/en/wp-content/uploads/2011/09/repo" target="_blank" rel="external">http://php.webtutor.pl/en/wp-content/uploads/2011/09/repo</a>“ &gt; ~/bin/repo<br>$ chmod a+x ~/bin/repo<br>初始化Git Repo进入开始时挂载的镜像硬盘，建立一个工作目录：<br>$ cd /Volumes/android_source<br>$ mkdir ANDROID_SOURCE/<br>$ cd ANDROID_SOURCE/<br>repo init -u git://aosp.tuna.tsinghua.edu.cn/android/platform/manifest -b android-5.1.1_r3<br>repo sync<br>或者<br>repo sync -j4（四个线程并发下载）<br>接下来就等待吧。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -121,7 +114,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/07/07/Android中继承RadioButton后，点击不能选中/" data-title="Android中继承RadioButton后，点击不能选中 | Gong Gaofeng&#39;s blog" data-tsina="2288227603" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/09/12/国内镜像快速下载Android源码/" data-title="国内镜像快速下载Android源码 | Gong Gaofeng&#39;s blog" data-tsina="2288227603" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -135,18 +128,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/07/07/Cursor的close方法源码阅读/" title="Cursor的close方法源码阅读">
+ <a href="/2015/09/26/Git-Push-Fails-fatal-The-remote-end-hung-up-unexpectedly/" title="Git Push Fails - fatal: The remote end hung up unexpectedly">
   <strong>上一篇：</strong><br/>
   <span>
-  Cursor的close方法源码阅读</span>
+  Git Push Fails - fatal: The remote end hung up unexpectedly</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/07/07/android-fitSystemWindows详解/"  title="android:fitSystemWindows详解">
+<a href="/2015/07/09/ViewGroup的OnInterceptTouchEvent方法的调用特点分析/"  title="ViewGroup的OnInterceptTouchEvent方法的调用特点分析">
  <strong>下一篇：</strong><br/> 
- <span>android:fitSystemWindows详解
+ <span>ViewGroup的OnInterceptTouchEvent方法的调用特点分析
 </span>
 </a>
 </div>
@@ -156,7 +149,7 @@
 	
   <section id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-Android中继承RadioButton后，点击不能选中" data-title="Android中继承RadioButton后，点击不能选中" data-url="http://yoursite.com/2015/07/07/Android中继承RadioButton后，点击不能选中/"></div>
+    <div class="ds-thread" data-thread-key="post-国内镜像快速下载Android源码" data-title="国内镜像快速下载Android源码" data-url="http://yoursite.com/2015/09/12/国内镜像快速下载Android源码/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">

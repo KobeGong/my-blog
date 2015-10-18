@@ -1,0 +1,629 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>BASH 语法 | Gong Gaofeng&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Gong Gaofeng">
+    
+
+    
+    <meta name="description" content="变量赋值
+123a=123read nameb=$(ls /home) 把命令的执行结果赋值给变量
+
+使用变量（前面用$）
+12echo $alet a=a+1
+
+
+
+系统变量
+
+$0 这个程序的执行名字
+$n 这个程序的第n个参数值，n=1…9
+$* 这个程序的所有参数
+$# 这个程序的参数个数
+$$ 这个程序的PID
+$! 执行上一个背景指令的PID
+$? 上一个指令的返回值
+
+
+
+if语句1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BASH 语法">
+<meta property="og:url" content="http://yoursite.com/2015/10/17/BASH-语法/index.html">
+<meta property="og:site_name" content="Gong Gaofeng's blog">
+<meta property="og:description" content="变量赋值
+123a=123read nameb=$(ls /home) 把命令的执行结果赋值给变量
+
+使用变量（前面用$）
+12echo $alet a=a+1
+
+
+
+系统变量
+
+$0 这个程序的执行名字
+$n 这个程序的第n个参数值，n=1…9
+$* 这个程序的所有参数
+$# 这个程序的参数个数
+$$ 这个程序的PID
+$! 执行上一个背景指令的PID
+$? 上一个指令的返回值
+
+
+
+if语句1">
+<meta property="og:updated_time" content="2015-10-18T15:47:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BASH 语法">
+<meta name="twitter:description" content="变量赋值
+123a=123read nameb=$(ls /home) 把命令的执行结果赋值给变量
+
+使用变量（前面用$）
+12echo $alet a=a+1
+
+
+
+系统变量
+
+$0 这个程序的执行名字
+$n 这个程序的第n个参数值，n=1…9
+$* 这个程序的所有参数
+$# 这个程序的参数个数
+$$ 这个程序的PID
+$! 执行上一个背景指令的PID
+$? 上一个指令的返回值
+
+
+
+if语句1">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Gong Gaofeng&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Gong Gaofeng&#39;s blog" title="Gong Gaofeng&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Gong Gaofeng&#39;s blog">Gong Gaofeng&#39;s blog</a></h1>
+				<h2 class="blog-motto">Never Give Up</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/17/BASH-语法/" title="BASH 语法" itemprop="url">BASH 语法</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Gong Gaofeng" target="_blank" itemprop="author">Gong Gaofeng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-17T14:53:25.000Z" itemprop="datePublished"> 发表于 2015-10-17</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<ol>
+<li><p>变量赋值</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">a</span>=123</span><br><span class="line">read name</span><br><span class="line"><span class="constant">b</span>=<span class="variable">$(ls /home)</span> 把命令的执行结果赋值给变量</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用变量（前面用$）</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo $<span class="literal">a</span></span><br><span class="line">let <span class="literal">a</span>=<span class="literal">a</span>+<span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>系统变量</p>
+<ul>
+<li>$0 这个程序的执行名字</li>
+<li>$n 这个程序的第n个参数值，n=1…9</li>
+<li>$* 这个程序的所有参数</li>
+<li>$# 这个程序的参数个数</li>
+<li>$$ 这个程序的PID</li>
+<li>$! 执行上一个背景指令的PID</li>
+<li>$? 上一个指令的返回值</li>
+</ul>
+</blockquote>
+<ol>
+<li>if语句<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ <span class="string">"22"</span> <span class="operator">-lt</span> <span class="string">"33"</span> ]注意空格</span><br><span class="line"></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"22 less than 33"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"no"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>case语句</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"enter a number"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> ans</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$ans</span> <span class="keyword">in</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span>  <span class="string">"you numer is <span class="variable">$ans</span>"</span></span><br><span class="line"></span><br><span class="line">;;</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"you number is 2"</span></span><br><span class="line"></span><br><span class="line">;;</span><br><span class="line"></span><br><span class="line">[<span class="number">3</span>-<span class="number">9</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"you number is <span class="variable">$ans</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>比较运算符<br>|运算符        |描述        |示例|<br>|:——————|:———    |:-|<br>|文件比较运算符|<br>|-e filename         |如果 filename 存在，则为真        |[ -e /var/log/syslog ]|<br>|-d filename         |如果 filename 为目录，则为真       | [ -d /tmp/mydir ]|<br>|-f filename         |如果 filename 为常规文件，则为真    |[ -f /usr/bin/grep ]|<br>|-L filename        | 如果 filename 为符号链接，则为真     |   [ -L /usr/bin/grep ]|<br>|-r filename        | 如果 filename 可读，则为真       | [ -r /var/log/syslog ]|<br>|-w filename         |如果 filename 可写，则为真       | [ -w /var/mytmp.txt ]|<br>|-x filename        | 如果 filename 可执行，则为真      |  [ -L /usr/bin/grep ]|<br>|filename1 -nt filename2   |      如果 filename1 比 filename2 新，则为真|        [ /tmp/install/etc/services -nt/etc/services ]|<br>|filename1 -ot filename2    |     如果 filename1 比 filename2 旧，则为真|        [ /boot/bzImage -otarch/i386/boot/bzImage ]|<br>|字符串比较运算符 （请注意引号的使用，这是防止空格扰乱代码的好方法）|<br>|-z string         |如果 string 长度为零，则为真       | [ -z “$myvar” ]|<br>|-n string        | 如果 string 长度非零，则为真      |  [ -n “$myvar” ]|<br>|string1 = string2        |如果 string1 与 string2 相同，则为真       | [ “$myvar” = “onetwo three” ]|<br>|string1 != string2        |如果 string1 与 string2 不同，则为真   |     [ “$myvar” !=”one two three” ]|<br>|算术比较运算符|<br>|num1 -eq num2       | 等于       | [ 3 -eq $mynum ]|<br>|num1 -ne num2       | 不等于      | [ 3 -ne $mynum ]|<br>|num1 -lt num2        |小于       |[ 3 -lt $mynum ]|<br>|num1 -le num2        |小于或等于  |     [ 3 -le $mynum ]|<br>|num1 -gt num2        |大于       |[ 3 -gt $mynum ]|<br>|num1 -ge num2        |大于或等于        |[ 3 -ge $mynum ]|</li>
+</ol>
+</li>
+<li><p>while语句</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ X=<span class="number">1</span></span><br><span class="line">$ <span class="keyword">while</span> [ <span class="variable">$x</span> -le <span class="number">10</span> ]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">　　<span class="built_in">echo</span> hello X is <span class="variable">$X</span></span><br><span class="line">　　<span class="built_in">let</span> X=X+<span class="number">1</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>bash中的for循环有几种方式：</p>
+<ol>
+<li>for name [ in word ] ; do list ; done</li>
+<li>for (( expr1 ; expr2 ; expr3 )) ; do list ; done//注意有2层括号</li>
+</ol>
+</blockquote>
+<p>其中list简单说就是一串由操作符（operator ；、&amp;、&amp;&amp;、||）分隔开的管道（pipeline）序列，详情参看man bash</p>
+<p>各给出一个简单例子：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> `<span class="keyword">ls</span>`</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">cat</span> <span class="label">$filename</span></span><br><span class="line"></span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for<span class="comment">((i=0; i&lt;10; i++)</span>)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">echo $i</span><br><span class="line"><span class="keyword">do</span><span class="label">ne</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>条件变量替换</strong>:<br>Bash Shell可以进行变量的条件替换,既只有某种条件发生时才进行替换,替换条件放在{}中.</li>
+</ul>
+<ol>
+<li>${value:-word}<br>当变量未定义或者值为空时,返回值为word的内容,否则返回变量的值.</li>
+<li>${value:=word}<br>与前者类似,只是若变量未定义或者值为空时,在返回word的值的同时将word赋值给value</li>
+<li>${value:?message}<br>若变量以赋值的话,正常替换.否则将消息message送到标准错误输出(若此替换出现在Shell程序中,那么该程序将终止运行)</li>
+<li>${value:+word}<br>若变量以赋值的话,其值才用word替换,否则不进行任何替换</li>
+<li><p>${value:offset}<br>${value:offset:length}<br>从变量中提取子串,这里offset和length可以是算术表达式.</p>
+</li>
+<li><p>${ #value}<br>变量的字符个数</p>
+</li>
+<li><p>${value#pattern}<br>${value##pattern}</p>
+</li>
+</ol>
+<p>去掉value中与pattern相匹配的部分,条件是value的开头与pattern相匹配<br>#与##的区别在于一个是最短匹配模式,一个是最长匹配模式.</p>
+<ol>
+<li>${value%pattern}<br>${value%%pattern}</li>
+</ol>
+<p>于(7)类似,只是是从value的尾部于pattern相匹配,%与%%的区别与#与##一样</p>
+<ol>
+<li>${value/pattern/string}<br>${value//pattern/string}<br>进行变量内容的替换,把与pattern匹配的部分替换为string的内容,/与//的区别与上同<br><strong>注意</strong>:上述条件变量替换中,除(2)外,其余均不影响变量本身的值</li>
+</ol>
+<ul>
+<li><strong>变量的算术运算</strong><br>在Bash Shell中,只能进行两个整数间的运算,其结果仍为整数.要进行算术运算,需要使用let命令,语法为:<br><code>let expr</code><br>expr 是一个包含项和操作符的表达式,项可以是一个变量或是一个整数常数,当使用整数常数时,其默认为十进制整数,用户可以用radio#number来指定其 它形式的整数,其中radio定义了整数是几进制表示的,number是该整数的值.若radio&gt;10,那么数字字符可从0-9和A-Z.<br>在表达式中支持的操作符及其含义为:<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">+,-,*,/,% 加,减,乘,除,取模</span><br><span class="line">\&gt;&gt;,<span class="tag">&lt;&lt;,&amp;,^,| 左移,右移,位与,位异或,位或</span><br><span class="line">?<span class="attribute">:</span> 三元运算符<span class="attribute">.</span>与<span class="attribute">C</span>语言中的定义一致</span><br><span class="line">~ 取补码</span><br><span class="line">!,&gt;</span>=,<span class="tag">&lt;<span class="title">=,</span>&gt;</span>,<span class="tag">&lt;<span class="title">,==,!=,&amp;&amp;,||</span></span><br><span class="line">=<span class="value">,+=,-=,*=,</span>/=<span class="value">,%=,&lt;&lt;=,</span>&gt;</span>&gt;=,&amp;=,^=,|=</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>表达式式中也可以使用括号.括号或运算优先级的定义与一般计算机语言中的相同.<br>let命令具有返回值.当计算结果(若有多个表达式时,以最后一个为准)为0时,返回值为1,否则为0.<br>当表达式中含有shell的特殊字符(如|)时,需要用引用符(‘或”)将其引用起来.<br>使用let时还需要注意的时,对于let x+y这样的式子,shell虽然计算了x+y的值但却将结果丢弃,若不想这样,可以使用let sum=x+y将x+y的结果保存在变量sum中<br>另外还可以使用((和))操作符取代let命令,而且这样的话,还可以省去对算术表达式的引用,如果想返回表达式的值,则需用$(())的格式</p>
+<p>使用set命令可以设置各种shell选项或者列出shell变量.单个选项设置常用的特性.<br>在某些选项之后-o参数将特殊特性打开.在某些选项之后使用+o参数将关闭某些特性,</p>
+<p>不带任何参数的set命令将显示shell的全部变量.除非遇到非法的选项,否则set总是返回ture.<br>当BASH shell被调用时,可以列出全部的选项.当前的选项集列在$-中.在option参数被处理后,其他的参数被赋值到位置参数中($1,$2,…,$n)</p>
+<p>set [—abefhkmnptuvxldCHP] [-o option name] [arguments …]</p>
+<blockquote>
+<p><em>选项说明</em><br>-a 自动向已经修改的变量或为导出后序命令的变量作出标志<br>-b 不是在原提示符之前,而是立即引发终止后台任务的状态表表<br>-e 如果命令带非零值返回,立即退出<br>-f 禁止带扩展名的路径<br>-h 定义函数时,定位和存储函数命令,当函数被执行时,通常查询函数命令<br>-k 所有的关键词参数,而不只是那些命令名前的关键词参数,被放在环境命令中<br>-m 监视器模式,启动任务控制.此选项默认支持系统shell交互.后台进程以单独的进程组运行,在每次完成任务时显示包含退出的状态行<br>-n 读取命令但不执行命令.通常监查shell脚本的句法错误.交互shell被忽略</p>
+</blockquote>
+<p>-o option-name 选项名可以是下列之一:<br>选项 说明<br>allexport 同-a选项<br>braceexpand shell执行花括号扩展,在默认情况下起作用<br>emacs 使用emacs风格命令行编辑接口.除非shell以-noline-editing选项启动,否则当shell交互时,通过默认启动该选项<br>errexit 同-e选项<br>histexpand 同-H选项<br>ignoreeof 其结果是好像shell命令IGNOREEOF=10被执行<br>interactive 允许单词前带#号,以使得在交互shell中忽略命令行的全部字符<br>-commands<br>monitor 同-m选项<br>noclobber 同-C选项<br>noexec 同-n选项<br>noglob 同-f选项<br>nohash 同-d选项<br>notify 同-b选项<br>nounset 同-u选项<br>physical 同-p选项<br>posix 改变BASH属性以匹配标准,默认操作不同于POSIX1003.2标准<br>verbose 同-v选项<br>vi 使用vi风格的命令行编辑器<br>XTRACE 同-x选项,如果没有给出选项名,显示当前选项值<br>-p 打开特权模式(在此模式,$ENV文件被处理,不能从环境中继承shell函数.如果是有效用户ID而不是实用户组则自动启动.关闭此选项将使得有效用户和组IDs设置实用户和组IDs)<br>-t 在读取命令并执行之后退出<br>-u 当执行参数括展时,把非设置变量作为错误处理(如果扩展企图出现在非设置变量中,shell显示错误信息.如果不是交互式,则带非凌值退出)<br>-v 输入行被读取时,显示shell输入行<br>-x 在每个简单命令被扩展之后,显示PS4扩展值,之后是要执行的命令<br>-l 保存和恢复绑定在命令中的名称<br>-d 禁止执行查找散列命令(通常,命令被保存在散列表中,一旦被找到就不再继续查找)<br>-C 效果好像是执行了noclobber=shell命令<br>-H 使用!风格的历史替代(当shell交互时,在默认情况下,此选项有效)<br>-P 如果设置此参数,当执行改变目录命令cd时,不遵循符号链接,而是使用实际的目录<br>— 如果在选项后没有参数,不设置位置参数.否则,即使一些参数以a选项开始,也要把位置参数设置为argument<br>- 结束选项的信号,将引发其余的参数被赋值到位置参数中(-x和-v选项被关闭.如果没有argument,位置参数将保留未改变的参数)</p>
+<ul>
+<li><strong>函数</strong></li>
+</ul>
+<p>函数的使用<br>BASH 是一个相对简单的脚本语言，不过为了方便结构化的设计，BASH 中也提供了函数定义的功能。BASH 中的函数定义很简单，只要向下面这样写就可以了：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">my_funcname</span> </span>&#123;</span><br><span class="line">　code block</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">my_funcname</span>() &#123;</span><br><span class="line">　<span class="preprocessor">code</span> <span class="keyword">block</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的第二种写法更接近于 C 语言中的写法。BASH 中要求函数的定义必须在函数使用之前，这是和 C 语言用头文件说明函数方法的不同。</p>
+<p>更 进一步的问题是如何给函数传递参数和获得返回值。BASH 中函数参数的定义并不需要在函数定义处就制定，而只需要在函数被调用时用 BASH 的保留变量 $1 $2 … 来引用就可以了；BASH 的返回值可以用 return 语句来指定返回一个特定的整数，如果没有 return 语句显式的返回一个返回值，则返回值就是该函数最后一条语句执行的结果（一般为 0，如果执行失败返回错误码）。函数的返回值在调用该函数的程序体中通过 $? 保留字来获得。下面我们就来看一个用函数来计算整数平方的例子：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">\<span class="comment">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">square() &#123;</span><br><span class="line">　<span class="keyword">let</span> <span class="string">"res = $1 * $1"</span></span><br><span class="line">　<span class="keyword">return</span> $res</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">square $<span class="number">1</span></span><br><span class="line"><span class="literal">result</span>=$?</span><br><span class="line">echo $<span class="literal">result</span></span><br><span class="line"></span><br><span class="line">exit <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/bash语法/">bash语法</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/10/17/BASH-语法/" data-title="BASH 语法 | Gong Gaofeng&#39;s blog" data-tsina="2288227603" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/10/17/Resources的资源匹配优先级/"  title="Resources的资源匹配优先级">
+ <strong>下一篇：</strong><br/> 
+ <span>Resources的资源匹配优先级
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-BASH-语法" data-title="BASH 语法" data-url="http://yoursite.com/2015/10/17/BASH-语法/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'undefined'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Android-Resources/" title="Android, Resources">Android, Resources<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/bash语法/" title="bash语法">bash语法<sup>1</sup></a></li>
+			
+		
+			
+		
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Gong Gaofeng in Baidu. <br/>
+			An Android Developer.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/kobegong5" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/kobegong" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		<a href="https://www.facebook.com/kobegong5" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		<a href="http://www.zhihu.com/people/kobegong5" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:kobegong5@163.com## e.g. imjark@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Gong Gaofeng">Gong Gaofeng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"kobegong"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F038095525aac5e84d3b79c6205a99fff' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

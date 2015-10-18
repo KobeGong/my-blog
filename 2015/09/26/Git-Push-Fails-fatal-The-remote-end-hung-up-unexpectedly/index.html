@@ -4,29 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Android中继承RadioButton后，点击不能选中 | Gong Gaofeng&#39;s blog</title>
+    <title>Git Push Fails - fatal: The remote end hung up unexpectedly | Gong Gaofeng&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gong Gaofeng">
     
 
     
-    <meta name="description" content="在继承RadioButton的时候，覆改构造方法的时候要确保
-123public RadioButton(Context context, AttributeSet attrs) &amp;#123;        this(context, attrs, com.android.internal.R.attr.radioButtonStyle);&amp;#125;
-这个构造方法被调用。必须在子类中调用supe">
+    <meta name="description" content="SymptomsWhen users try to run “git push” the following error message is shown:$ git pushCounting objects: 2332669, done.Delta compression using up to 16 threads.Compressing objects: 100% (360818/36081">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android中继承RadioButton后，点击不能选中">
-<meta property="og:url" content="http://yoursite.com/2015/07/07/Android中继承RadioButton后，点击不能选中/index.html">
+<meta property="og:title" content="Git Push Fails - fatal: The remote end hung up unexpectedly">
+<meta property="og:url" content="http://yoursite.com/2015/09/26/Git-Push-Fails-fatal-The-remote-end-hung-up-unexpectedly/index.html">
 <meta property="og:site_name" content="Gong Gaofeng's blog">
-<meta property="og:description" content="在继承RadioButton的时候，覆改构造方法的时候要确保
-123public RadioButton(Context context, AttributeSet attrs) &amp;#123;        this(context, attrs, com.android.internal.R.attr.radioButtonStyle);&amp;#125;
-这个构造方法被调用。必须在子类中调用supe">
-<meta property="og:updated_time" content="2015-07-11T05:11:46.000Z">
+<meta property="og:description" content="SymptomsWhen users try to run “git push” the following error message is shown:$ git pushCounting objects: 2332669, done.Delta compression using up to 16 threads.Compressing objects: 100% (360818/36081">
+<meta property="og:updated_time" content="2015-09-25T16:09:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android中继承RadioButton后，点击不能选中">
-<meta name="twitter:description" content="在继承RadioButton的时候，覆改构造方法的时候要确保
-123public RadioButton(Context context, AttributeSet attrs) &amp;#123;        this(context, attrs, com.android.internal.R.attr.radioButtonStyle);&amp;#125;
-这个构造方法被调用。必须在子类中调用supe">
+<meta name="twitter:title" content="Git Push Fails - fatal: The remote end hung up unexpectedly">
+<meta name="twitter:description" content="SymptomsWhen users try to run “git push” the following error message is shown:$ git pushCounting objects: 2332669, done.Delta compression using up to 16 threads.Compressing objects: 100% (360818/36081">
 
     
     <link rel="alternative" href="/atom.xml" title="Gong Gaofeng&#39;s blog" type="application/atom+xml">
@@ -86,14 +80,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/07/07/Android中继承RadioButton后，点击不能选中/" title="Android中继承RadioButton后，点击不能选中" itemprop="url">Android中继承RadioButton后，点击不能选中</a>
+      <a href="/2015/09/26/Git-Push-Fails-fatal-The-remote-end-hung-up-unexpectedly/" title="Git Push Fails - fatal: The remote end hung up unexpectedly" itemprop="url">Git Push Fails - fatal: The remote end hung up unexpectedly</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gong Gaofeng" target="_blank" itemprop="author">Gong Gaofeng</a>
 		
   <p class="article-time">
-    <time datetime="2015-07-07T08:21:24.000Z" itemprop="datePublished"> 发表于 2015-07-07</time>
+    <time datetime="2015-09-25T16:07:43.000Z" itemprop="datePublished"> 发表于 2015-09-26</time>
     
   </p>
 </header>
@@ -106,9 +100,7 @@
 		
 		</div>
 		
-		<p>在继承RadioButton的时候，覆改构造方法的时候要确保</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">RadioButton</span>(<span class="params">Context context, AttributeSet attrs</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(context, attrs, com.android.<span class="keyword">internal</span>.R.attr.radioButtonStyle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个构造方法被调用。必须在子类中调用super(Context context, AttributeSet attrs)方法。否则RadioButton子类不能选中。</p>
+		<p>Symptoms<br>When users try to run “git push” the following error message is shown:<br>$ git push<br>Counting objects: 2332669, done.<br>Delta compression using up to 16 threads.<br>Compressing objects: 100% (360818/360818), done.<br>error: RPC failed; result=22, HTTP code = 411<br>fatal: The remote end hung up unexpectedly<br>Writing objects: 100% (2332669/2332669), 483.30 MiB | 114.26 MiB/s, done.<br>Total 2332669 (delta 1949888), reused 2330461 (delta 1949349)<br>fatal: The remote end hung up unexpectedly<br>Cause<br>The “Smart HTTP” protocol in Git uses “Transfer-Encoding: chunked” in POST requests when it contains packed objects greater than 1MB in size.<br>Some proxy servers, like Nginx, do not support this transfer encoding by default, and the requests will be rejected before they get to Stash. Because of this, the Stash logs will not show any extra information.<br>Workaround<br>When pushing a large amount of data (initial push of a big repository, change with very big file(s)) may require a higher http.postBuffer setting on your git client (not the server). From <a href="https://www.kernel.org/pub/software/scm/git/docs/git-config.html" target="_blank" rel="external">https://www.kernel.org/pub/software/scm/git/docs/git-config.html</a><br>http.postBuffer<br>Maximum size in bytes of the buffer used by smart HTTP transports when POSTing data to the remote system. For requests larger than this buffer size, HTTP/1.1 and Transfer-Encoding: chunked is used to avoid creating a massive pack file locally. Default is 1 MiB, which is sufficient for most requests.<br>Configuration on your reverse proxy. Usually ngnix the parameter client_max_body_size is a blocker. The reverse proxy may also have a connection timeout that’s closing the connection (e.g. TimeOut or ProxyTimeout in apache, proxy_read_timeout in ngnix). Try bypassing the proxy by pushing directly to Stash IP:port. If this works, it’s highly likely that the proxy server is causing the early disconnect and needs to be tuned.<br>User is using an outbound proxy on his machine that is causing the issue.<br>Resolution<br>Increase the Git buffer size to the largest individual file size of your repo:<br>git config —global http.postBuffer 157286400<br>Refer to the resolution of Git push fails - client intended to send too large chunked body for ngnix reverse proxy configuration. Increase this parameter to the largest individual file size of your repo.<br>Bypass the outbound proxy as explained on Can’t clone or pull due to a git outbound proxy</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -121,7 +113,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/07/07/Android中继承RadioButton后，点击不能选中/" data-title="Android中继承RadioButton后，点击不能选中 | Gong Gaofeng&#39;s blog" data-tsina="2288227603" class="share clearfix">
+	  <div data-url="http://yoursite.com/2015/09/26/Git-Push-Fails-fatal-The-remote-end-hung-up-unexpectedly/" data-title="Git Push Fails - fatal: The remote end hung up unexpectedly | Gong Gaofeng&#39;s blog" data-tsina="2288227603" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -135,18 +127,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/07/07/Cursor的close方法源码阅读/" title="Cursor的close方法源码阅读">
+ <a href="/2015/10/17/Resources的资源匹配优先级/" title="Resources的资源匹配优先级">
   <strong>上一篇：</strong><br/>
   <span>
-  Cursor的close方法源码阅读</span>
+  Resources的资源匹配优先级</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/07/07/android-fitSystemWindows详解/"  title="android:fitSystemWindows详解">
+<a href="/2015/09/12/国内镜像快速下载Android源码/"  title="国内镜像快速下载Android源码">
  <strong>下一篇：</strong><br/> 
- <span>android:fitSystemWindows详解
+ <span>国内镜像快速下载Android源码
 </span>
 </a>
 </div>
@@ -156,7 +148,7 @@
 	
   <section id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-Android中继承RadioButton后，点击不能选中" data-title="Android中继承RadioButton后，点击不能选中" data-url="http://yoursite.com/2015/07/07/Android中继承RadioButton后，点击不能选中/"></div>
+    <div class="ds-thread" data-thread-key="post-Git-Push-Fails-fatal-The-remote-end-hung-up-unexpectedly" data-title="Git Push Fails - fatal: The remote end hung up unexpectedly" data-url="http://yoursite.com/2015/09/26/Git-Push-Fails-fatal-The-remote-end-hung-up-unexpectedly/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
