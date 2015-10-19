@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/10/17/Resources的资源匹配优先级/index.html">
 <meta property="og:site_name" content="Gong Gaofeng's blog">
 <meta property="og:description" content="之前心里一直在打鼓，Android资源文件可以定义在不同分辨率，density，屏幕方向，最小宽度，当我们的程序需要找一个资源，但是他在多个文件下面都存在，那么Android系统的查找顺序是怎样的？最近在适配公司的项目，这些问题就深刻的站到面前了，抽时间查看了Android这部分的源代码，下面是ResTable_config类，此类是framework在native层的代码，用来记录系统的一些运行">
-<meta property="og:updated_time" content="2015-10-18T16:54:11.000Z">
+<meta property="og:updated_time" content="2015-10-19T15:11:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Resources的资源匹配优先级">
 <meta name="twitter:description" content="之前心里一直在打鼓，Android资源文件可以定义在不同分辨率，density，屏幕方向，最小宽度，当我们的程序需要找一个资源，但是他在多个文件下面都存在，那么Android系统的查找顺序是怎样的？最近在适配公司的项目，这些问题就深刻的站到面前了，抽时间查看了Android这部分的源代码，下面是ResTable_config类，此类是framework在native层的代码，用来记录系统的一些运行">
@@ -112,6 +112,7 @@
 <p>代码位于framework/base/libs/androidfw/ResourceTypes.cpp</p>
 <p><strong>优先级</strong></p>
 <ol>
+<li>IMSI</li>
 <li>语言</li>
 <li>国家</li>
 <li>UI mode（白天or黑夜）</li>
@@ -121,6 +122,14 @@
 <li>屏幕方向</li>
 <li>系统version</li>
 </ol>
+<blockquote>
+<p><em>IMSI</em><br>由MCC、MNC、MSIN组成，其中MCC为移动国家号码，由3位数字组成，</p>
+<pre><code><span class="bullet">* </span>唯一地识别移动客户所属的国家，我国为460；MNC为网络id，由2位数字组成，
+<span class="bullet">* </span>用于识别移动客户所归属的移动网络，中国移动为00，中国联通为01,中国电信为03；MSIN为移动客户识别码，采用等长11位数字构成。
+<span class="bullet">* </span>唯一地识别国内GSM移动通信网中移动客户。所以要区分是移动还是联通，只需取得SIM卡中的MNC字段即可
+</code></pre><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">String imsi = telManager.getSubscriberId<span class="params">()</span>;</span><br><span class="line">    <span class="keyword">if</span><span class="params">(imsi!=null)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span><span class="params">(imsi.startsWith<span class="params">(<span class="string">"46000"</span>)</span> || imsi.startsWith<span class="params">(<span class="string">"46002"</span>)</span>)</span>&#123;<span class="comment">//因为移动网络编号46000下的IMSI已经用完，所以虚拟了一个46002编号，134/159号段使用了此编号</span></span><br><span class="line">        <span class="comment">//中国移动</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span><span class="params">(imsi.startsWith<span class="params">(<span class="string">"46001"</span>)</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//中国联通</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span><span class="params">(imsi.startsWith<span class="params">(<span class="string">"46003"</span>)</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//中国电信</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>IMSI：国际移动用户识别码（唯一标识），IMSI = MCC + MNC + MSIN，其中MCC是指移动台国家代码（3 位，中国460），MNC是指移动网代码（2 位中国00），MSIN是指移动用户识别号码 (10 位 )<br>IMSI共有15位，其结构如下：<br>　　MCC+MNC+MSIN ，（MNC+MSIN=NMSI）<br>　　MCC：Mobile Country Code，移动国家码，MCC的资源由国际电联（ITU）统一分配和管理，唯一识别移动用户所属的国家，共3位，中国为460;<br>　　MNC:Mobile Network Code，移动网络码，共2位，中国移动TD系统使用00，中国联通GSM系统使用01，中国移动GSM系统使用02，中国电信CDMA系统使用03，一个典型的IMSI号码为460030912121001;<br>　　MSIN:Mobile Subscriber Identification Number共有10位，其结构如下：<br>　　09+M0M1M2M3+ABCD<br>　　其中的M0M1M2M3和MDN号码中的H0H1H2H3可存在对应关系，ABCD四位为自由分配。<br>　　可以看出IMSI在MSIN号码前加了MCC即NMSI，可以区别出每个用户的来自的国家，因此可以实现国际漫游。在同一个国家内，如果有多个移动网络运营商，可以通过MNC来进行区别.</p>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
